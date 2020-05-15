@@ -12,7 +12,7 @@ import useTodoState from './hooks/useTodoState';
 function TodoApp() {
     
     const initialTodos = [{ id: 1, task: "Pet a monkey", completed: false}];
-    const { todos, addTodo, removeTodo, toggleTodo, editTodo} = useTodoState(
+    const { todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(
         initialTodos
     );
 
