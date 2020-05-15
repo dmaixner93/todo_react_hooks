@@ -1,6 +1,9 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import useInputState from './hooks/useInputState';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 function EditTodoForm( { id, task, editTodo, editToggleForm } ) {
     const [value, handleChange, reset] = useInputState(task);
@@ -20,6 +23,13 @@ function EditTodoForm( { id, task, editTodo, editToggleForm } ) {
                 fullWidth
                 autoFocus
             />
+            <ListItemSecondaryAction>
+                <IconButton aria-label="Cancel" onClick={() => {
+                    editToggleForm();
+                }}>
+                    <CloseIcon></CloseIcon>
+                </IconButton>
+            </ListItemSecondaryAction>
         </form>
     )
 }
