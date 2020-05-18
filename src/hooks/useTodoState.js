@@ -6,7 +6,8 @@ export default initalValue => {
     return {
         todos,
         addTodo: newTodoText => {
-            setTodos([...todos, {id: uuidv4(), task: newTodoText, completed: false}]);
+            const idNum = uuidv4();
+            setTodos([...todos, {key:idNum, id: idNum, task: newTodoText, completed: false}]);
         },
         removeTodo: todoId => {
             // filter out removed todo
