@@ -13,7 +13,7 @@ function TodoList() {
                 <List>
                     {todos.map((todo, i) => (
                         <>
-                            <Todo {...todo} />
+                            <Todo key={todo.id} {...todo} />
                             {i < todos.length - 1 && <Divider />}
                         </>
                     ))}
