@@ -11,15 +11,12 @@ function TodoList() {
         return (
             <Paper>
                 <List>
-                {todos.map((todo, i) => (
-                    <>
-                        <Todo
-                            {...todo} // shorter syntaxt to pass down 'id', 'completed', and 'task'
-                            // key={todo.id}    
-                        />
-                        {i < todos.length - 1 && <Divider />}
-                    </>
-                ))}
+                    {todos.map((todo, i) => (
+                        <>
+                            <Todo {...todo} />
+                            {i < todos.length - 1 && <Divider />}
+                        </>
+                    ))}
                 </List>
             </Paper>
         )

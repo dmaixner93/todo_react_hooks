@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, memo } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import CheckBox from '@material-ui/core/CheckBox';
@@ -13,16 +13,11 @@ import { DispatchContext } from './contexts/todos.context';
 function Todo({ id, task, completed }) {
     const dispatch = useContext(DispatchContext);
     const [isEditing, toggle] = useToggleState();
+    console.log(id);
     return (
         <ListItem style={{ height: "64px" }}>
-            { isEditing ? ( 
-                <div>
-                    <EditTodoForm 
-                        id={id}
-                        task={task}
-                        editToggleForm={toggle}
-                    />
-                </div>
+            {isEditing ? ( 
+                <EditTodoForm id={id} task={task} editToggleForm={toggle} />
             ) : (
             <>
             <CheckBox 
@@ -31,9 +26,8 @@ function Todo({ id, task, completed }) {
                 onClick={() => dispatch({ type: "TOGGLE", id: id})} 
             />
             <ListItemText 
-                style={{
-                    textDecoration: completed ? "line-through" : "none"
-                }}>{task}
+                style={{ textDecoration: completed ? "line-through" : "none" }}>
+                    {task}
             </ListItemText>
             <ListItemSecondaryAction>
                 <IconButton 
@@ -55,4 +49,4 @@ function Todo({ id, task, completed }) {
     )
 }
 
-export default Todo;
+export default memo(Todo);

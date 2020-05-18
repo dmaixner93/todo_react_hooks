@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useReducer, useEffect } from 'react';
 
 // 'key' is the key for the item in window.localStorage
-function useLocalStorageState(key, defaultVal) {
-    const [state, setState] = useState(() => {
+function useLocalStorageReducer(key, defaultVal, reducer) {
+    const [state, dispatch] = useReducer(reducer, defaultVal, () => {
         let val;
         try {
             val = JSON.parse(
@@ -16,13 +16,12 @@ function useLocalStorageState(key, defaultVal) {
             val = defaultVal;
         }
         return val;
-    });
+    })
     // use useEffect to update localStorage when state changes.
     useEffect(() => {
         window.localStorage.setItem(key, JSON.stringify(state));
     }, [state, key]);
+    return [state, dispatch];
+};
 
-    return [state, setState];
-}
-
-export default useLocalStorageState;
+export { useLocalStorageReducer };

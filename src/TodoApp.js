@@ -25,7 +25,7 @@ function TodoApp() {
                 </Toolbar>
             </AppBar>
             <Grid container justify="center" style={{ marginTop: "1rem"}}>
-                <Grid item xs={11} md={8} lg={4}>
+                <Grid item xs={10} md={8} lg={5}>
                     <TodoProvider>
                         <TodoForm/>
                         <TodoList/>
