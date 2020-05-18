@@ -8,10 +8,10 @@ import EditIcon from '@material-ui/icons/Edit';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import useToggleState from './hooks/useToggleState';
 import EditTodoForm from './EditTodoForm';
-import { TodoContext } from './contexts/todos.context';
+import { DispatchContext } from './contexts/todos.context';
 
 function Todo({ id, task, completed }) {
-    const { dispatch } = useContext(TodoContext);
+    const dispatch = useContext(DispatchContext);
     const [isEditing, toggle] = useToggleState();
     return (
         <ListItem style={{ height: "64px" }}>
