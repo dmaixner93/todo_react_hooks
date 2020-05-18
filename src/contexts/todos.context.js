@@ -1,5 +1,5 @@
-import React, { createContext } from 'react';
-import useTodoState from '../hooks/useTodoState';
+import React, { createContext, useReducer } from 'react';
+import todoReducer from '../reducers/todo.reducer';
 
 const defaultTodos = [
     { key: 1, id: 1, task: "Mow the lawn using goats", completed: false },
@@ -9,13 +9,9 @@ const defaultTodos = [
 export const TodoContext = createContext();
 
 export function TodoProvider(props) {
-    /** function from useTodoState is returning ALL the functions in an object.
-     * This allows us to also pass the returned object from useTodoState into
-     * useState(), instead of calling - const { todo,addTodo, removeTodo... } below.
-     */
-    const todoStuff = useTodoState(defaultTodos);
+    const [todos, dispatch] = useReducer(todoReducer, defaultTodos);
     return (
-        <TodoContext.Provider value={todoStuff}>
+        <TodoContext.Provider value={{ todos, dispatch }}>
             {props.children}
         </TodoContext.Provider>
     );
