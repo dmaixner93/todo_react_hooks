@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { DispatchContext } from './contexts/todos.context';
 
-function EditTodoForm({ id, task, editToggleForm }) {
+function EditTodoForm({ id, task, toggleEditForm }) {
     const [value, handleChange, reset] = useInputState(task);
     const dispatch = useContext(DispatchContext);
     return (
@@ -14,7 +14,7 @@ function EditTodoForm({ id, task, editToggleForm }) {
                 e.preventDefault();
                 dispatch({ type: "EDIT", id: id, newTask: value });
                 reset();
-                editToggleForm();
+                toggleEditForm();
             }}
             style={{ marginLeft: "1rem"}}
         >
@@ -27,7 +27,7 @@ function EditTodoForm({ id, task, editToggleForm }) {
             />
             <ListItemSecondaryAction>
                 <IconButton aria-label="Cancel" onClick={() => {
-                    editToggleForm();
+                    toggleEditForm();
                 }}>
                     <CloseIcon></CloseIcon>
                 </IconButton>

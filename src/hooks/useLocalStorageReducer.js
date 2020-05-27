@@ -2,6 +2,10 @@ import { useReducer, useEffect } from 'react';
 
 // 'key' is the key for the item in window.localStorage
 function useLocalStorageReducer(key, defaultVal, reducer) {
+    /** The third argument being passed in "establishes" what will 
+     * be used as the defaultVal/state AFTER the first time that 
+     * useLocalStorageReducer() is triggered.
+     */
     const [state, dispatch] = useReducer(reducer, defaultVal, () => {
         let val;
         try {
